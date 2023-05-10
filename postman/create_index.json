@@ -1,0 +1,56 @@
+{
+	"info": {
+		"_postman_id": "eb5d295e-60fd-481a-b3b4-d3e8d81d5645",
+		"name": "openai-cognitive-semantic-search-collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST",
+			"item": [
+				{
+					"name": "1_CreateIndex",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "api-key",
+								"value": "{{admin-key}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"vector-search-demo-index\",    \r\n    \"fields\": [\r\n        {\r\n            \"name\": \"id\",\r\n            \"type\": \"Edm.String\",\r\n            \"key\": true,\r\n            \"searchable\": false\r\n        },\r\n\r\n        {\r\n            \"name\": \"prefix\",\r\n            \"type\": \"Edm.String\",\r\n            \"key\": false,\r\n            \"searchable\": false,\r\n            \"filterable\": true,\r\n            \"sortable\": false,\r\n            \"facetable\": false\r\n        },\r\n\r\n        {\r\n            \"name\": \"document_path\",\r\n            \"type\": \"Edm.String\",\r\n            \"key\": false,\r\n            \"searchable\": false,\r\n            \"filterable\": false,\r\n            \"sortable\": false,\r\n            \"facetable\": false\r\n        },\r\n        \r\n        {\r\n            \"name\": \"page_content\",\r\n            \"type\": \"Edm.String\",\r\n            \"key\": false,\r\n            \"searchable\": true,\r\n            \"filterable\": false,\r\n            \"sortable\": false,\r\n            \"facetable\": false\r\n        },\r\n        \r\n        {\r\n            \"name\": \"page_number\",\r\n            \"type\": \"Edm.Int32\",\r\n            \"searchable\": false,\r\n            \"filterable\": false,\r\n            \"sortable\": false,\r\n            \"facetable\": false\r\n        },\r\n\r\n        {\r\n            \"name\": \"page_content_vector\",\r\n            \"type\": \"Collection(Edm.Single)\",\r\n            \"searchable\": true,\r\n            \"retrievable\": true,\r\n            \"dimensions\": 2048,\r\n            \"algorithmConfiguration\": \"page-content-vector-config\"\r\n        }\r\n\r\n    ],\r\n\r\n    \"vectorSearch\": {\r\n        \"algorithmConfigurations\": [\r\n            {\r\n                \"name\": \"page-content-vector-config\",\r\n                \"algorithm\": \"hnsw\",\r\n                \"hnswParameters\": {\r\n                    \"m\": 4,\r\n                    \"efConstruction\": 400,\r\n                    \"metric\": \"cosine\"\r\n                }\r\n            }\r\n        ]\r\n    },\r\n\r\n    \"semantic\": {\r\n        \"configurations\": [\r\n            {\r\n                \"name\": \"semantic-config-1\",\r\n                \"prioritizedFields\": {\r\n                    \"titleField\": {\r\n                        \"fieldName\": \"document_path\"\r\n                    },\r\n                    \"prioritizedContentFields\": [\r\n                        {\r\n                            \"fieldName\": \"page_content\"\r\n                        }\r\n                    ]\r\n                }\r\n            }\r\n        ]\r\n    }\r\n\r\n}"
+						},
+						"url": {
+							"raw": "https://{{AzureCognitiveSearchServiceName}}.search.windows.net/indexes?api-version=2023-07-01-Preview",
+							"protocol": "https",
+							"host": [
+								"{{AzureCognitiveSearchServiceName}}",
+								"search",
+								"windows",
+								"net"
+							],
+							"path": [
+								"indexes"
+							],
+							"query": [
+								{
+									"key": "api-version",
+									"value": "2023-07-01-Preview"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

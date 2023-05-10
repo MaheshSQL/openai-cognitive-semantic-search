@@ -1,0 +1,8 @@
+./scripts/*
+./.env
+./sample_docs/*
+./misc/*
+./temp_uploads/*
+./app/app_before_sidebar.py
+./modules/utilities_old.py
+./modules/__pycache__/*

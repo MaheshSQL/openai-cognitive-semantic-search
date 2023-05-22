@@ -39,7 +39,7 @@ This solution has been created by drawing inspiration from existing Enterprise C
 - If you have used the 3 models mentioned in steps above, no changes are required in _app/app.py_ file.
     - Otherwise, update values for aoai_embedding_model and aoai_text_model variables at the begining of app/app.py file.
 - Provision Azure Cognitive Search service
-    - Make sure you requested aka.ms/VectorSearchSignUp and request was approved
+    - Make sure you requested _aka.ms/VectorSearchSignUp_ and request was approved
     - Create a new search index using provided Postman script   
 - Almost there, rename _.env_template_ file to _.env_ 
     - Renamed file should be placed  within same directory as this readme.md file. 
